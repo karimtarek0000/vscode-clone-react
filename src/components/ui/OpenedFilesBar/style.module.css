@@ -1,0 +1,15 @@
+.tabsWrapper {
+  @apply flex items-center text-xl;
+}
+
+.tab {
+  @apply flex items-center px-3 py-1 list-none cursor-pointer gap-x-2 bg-slate-800;
+}
+
+.tab:hover > .tabClose {
+  @apply opacity-100;
+}
+
+.tabClose {
+  @apply p-1 transition-opacity rounded-md opacity-0 bg-slate-950;
+}

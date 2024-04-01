@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import counterSlice from "./slices/counter";
+import fileTreeSlice from "./slices/fileTree";
 
 const store = configureStore({
   reducer: {
-    counter: counterSlice,
+    tree: fileTreeSlice,
   },
 });
 
