@@ -23,7 +23,7 @@ const FileSyntaxHighlighter = ({
       }}
       showLineNumbers
     >
-      {String(content)}
+      {content && String(content)}
     </SyntaxHighlighter>
   );
 };

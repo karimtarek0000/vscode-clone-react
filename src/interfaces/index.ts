@@ -15,3 +15,8 @@ export interface IRenderFileIcon {
   isFolder?: boolean;
   isOpen?: boolean;
 }
+
+export interface IOpenedFileTab {
+  file: IFile;
+  idx: number;
+}

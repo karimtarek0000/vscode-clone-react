@@ -1,14 +1,18 @@
 import { useSelector } from "react-redux";
-import { selectFileTree, setClickedFile } from "../../../app/slices/fileTree";
+import {
+  removeTabActive,
+  selectFileTree,
+  setClickedFile,
+} from "../../../app/slices/fileTree";
 import { useAppDispatch } from "../../../app/store";
-import { IFile } from "../../../interfaces";
+import { IOpenedFileTab } from "../../../interfaces";
 import RenderFileIcon from "../RenderFileIcon";
 import RenderSVG from "../RenderSVG";
 import Style from "./style.module.css";
 
 const { tab, tabClose } = Style;
 
-const OpenedFileTab = ({ file }: { file: IFile }) => {
+const OpenedFileTab = ({ file, idx }: IOpenedFileTab) => {
   const { id, fileName, fileContent } = file;
 
   // ----------------- STATE -----------------
@@ -18,6 +22,7 @@ const OpenedFileTab = ({ file }: { file: IFile }) => {
   // ----------------- HANDLER -----------------
   const closeTabHandler = (e: MouseEvent<HTMLButtonElement, any>) => {
     e.stopPropagation();
+    dispatch(removeTabActive(idx));
   };
   const setClickedTabHandler = () => {
     dispatch(

@@ -38,9 +38,30 @@ export const fileTreeSlice = createSlice({
     setClickedFile(state, action: PayloadAction<IClickedFile>) {
       state.clickedFile = action.payload;
     },
+    removeTabActive(state, action: PayloadAction<number>) {
+      const idx = action.payload;
+      let activeTab!: IFile;
+
+      state.openedFiles.splice(idx, 1);
+
+      if (!idx && !state.openedFiles.length) {
+        state.clickedFile = {} as IClickedFile;
+        return;
+      }
+
+      if (idx) activeTab = state.openedFiles[idx - 1];
+      if (!idx) activeTab = state.openedFiles[0];
+
+      state.clickedFile = {
+        id: activeTab.id,
+        fileName: activeTab.fileName,
+        fileContent: activeTab.fileContent,
+      };
+    },
   },
 });
 
-export const { setOpenedFiles, setClickedFile } = fileTreeSlice.actions;
+export const { setOpenedFiles, setClickedFile, removeTabActive } =
+  fileTreeSlice.actions;
 export const selectFileTree = (state: RootState) => state.tree;
 export default fileTreeSlice.reducer;

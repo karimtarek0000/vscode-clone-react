@@ -7,5 +7,5 @@
 }
 
 .tabClose {
-  @apply p-1 transition-opacity rounded-md opacity-0 bg-slate-950;
+  @apply p-1 transition-opacity scale-75 rounded-md opacity-0 bg-slate-950;
 }

@@ -8,8 +8,8 @@ const OpenedFilesBar = () => {
 
   return (
     <nav className="flex items-center text-xl">
-      {openedFiles.map((file) => {
-        return <OpenedFileTab key={file.id} file={file} />;
+      {openedFiles.map((file, idx) => {
+        return <OpenedFileTab key={file.id} file={file} idx={idx} />;
       })}
     </nav>
   );
