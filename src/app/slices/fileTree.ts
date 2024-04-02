@@ -3,8 +3,9 @@ import { IFile } from "../../interfaces";
 import type { RootState } from "../store";
 
 interface IClickedFile {
+  id: string | null;
   fileName: string;
-  fileContent: string;
+  fileContent: string | undefined;
 }
 
 interface IFileTree {
@@ -15,6 +16,7 @@ interface IFileTree {
 const initialState: IFileTree = {
   openedFiles: [],
   clickedFile: {
+    id: null,
     fileName: "",
     fileContent: "",
   },
@@ -25,10 +27,13 @@ export const fileTreeSlice = createSlice({
   initialState,
   reducers: {
     setOpenedFiles(state, action: PayloadAction<IFile>) {
-      state.openedFiles = [
-        ...state.openedFiles.filter((file) => file.id !== action.payload.id),
-        action.payload,
-      ];
+      const exist = state.openedFiles.find(
+        (file) => file.id === action.payload.id
+      );
+
+      if (!exist) {
+        state.openedFiles = [...state.openedFiles, action.payload];
+      }
     },
     setClickedFile(state, action: PayloadAction<IClickedFile>) {
       state.clickedFile = action.payload;

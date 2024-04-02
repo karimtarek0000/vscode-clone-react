@@ -1,18 +1,28 @@
 import { useState } from "react";
-import { setOpenedFiles } from "../app/slices/fileTree";
+import { setClickedFile, setOpenedFiles } from "../app/slices/fileTree";
 import { useAppDispatch } from "../app/store";
 import { IFile } from "../interfaces";
 import RenderFileIcon from "./ui/RenderFileIcon";
 import RenderSVG from "./ui/RenderSVG";
 
 const RecursiveFile = ({ fileTree }: { fileTree: IFile }) => {
-  const { fileName, isFolder, children } = fileTree;
+  const { id, fileName, isFolder, children, fileContent } = fileTree;
   // ----------------- STATE -----------------
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const dispatch = useAppDispatch();
 
   // ----------------- HANDLER -----------------
   const toggleHandler = () => setIsOpen((prev) => !prev);
+  const setOpenedFilesHandler = () => {
+    dispatch(setOpenedFiles(fileTree));
+    dispatch(
+      setClickedFile({
+        id,
+        fileName,
+        fileContent,
+      })
+    );
+  };
 
   return (
     <div className="flex flex-col gap-2 text-2xl ms-4">
@@ -32,7 +42,7 @@ const RecursiveFile = ({ fileTree }: { fileTree: IFile }) => {
           </button>
         ) : (
           <button
-            onClick={() => dispatch(setOpenedFiles(fileTree))}
+            onClick={setOpenedFilesHandler}
             className="flex items-center gap-x-1"
           >
             <RenderFileIcon fileName={fileName} />

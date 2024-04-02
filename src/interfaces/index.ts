@@ -3,11 +3,11 @@ export interface FileInfo {
 }
 
 export interface IFile {
-  id: string;
+  id: string | null;
   fileName: string;
   isFolder: boolean;
   children?: IFile[];
-  fileContent: string;
+  fileContent?: string;
 }
 
 export interface IRenderFileIcon {
