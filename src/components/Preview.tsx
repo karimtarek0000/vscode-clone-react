@@ -5,7 +5,7 @@ import FileSyntaxHighlighter from "./ui/FileSyntaxHighlighter";
 import OpenedFilesBar from "./ui/OpenedFilesBar";
 import WelcomePreview from "./WelcomePreview";
 
-const Coding = () => {
+const Preview = () => {
   const { clickedFile, openedFiles } = useSelector(selectFileTree);
 
   if (!openedFiles.length) return <WelcomePreview />;
@@ -18,4 +18,4 @@ const Coding = () => {
   );
 };
 
-export default Coding;
+export default Preview;

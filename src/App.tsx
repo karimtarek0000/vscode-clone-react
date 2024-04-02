@@ -1,5 +1,5 @@
-import Coding from "./components/Coding";
 import Explorer from "./components/Explorer";
+import Preview from "./components/Preview";
 import ResizePanal from "./components/ui/ResizePanal";
 
 const App = () => {
@@ -8,7 +8,7 @@ const App = () => {
       <ResizePanal
         showLeftPanel={true}
         leftSide={<Explorer />}
-        rightSide={<Coding />}
+        rightSide={<Preview />}
       />
     </main>
   );
