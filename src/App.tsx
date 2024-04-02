@@ -1,27 +1,15 @@
-import { useSelector } from "react-redux";
-import { selectFileTree } from "./app/slices/fileTree";
-import RecursiveFile from "./components/RecursiveFile";
-import FileSyntaxHighlighter from "./components/ui/FileSyntaxHighlighter";
-import OpenedFilesBar from "./components/ui/OpenedFilesBar";
-import { files } from "./data";
+import Coding from "./components/Coding";
+import Explorer from "./components/Explorer";
+import ResizePanal from "./components/ui/ResizePanal";
 
 const App = () => {
-  const { clickedFile } = useSelector(selectFileTree);
-
   return (
-    <main className="flex pt-3 ">
-      <aside>
-        {files.map((file) => {
-          return <RecursiveFile key={file.fileName} fileTree={file} />;
-        })}
-      </aside>
-
-      <section>
-        <OpenedFilesBar />
-
-        {/* Code */}
-        <FileSyntaxHighlighter content={clickedFile.fileContent} />
-      </section>
+    <main className="flex h-screen pt-3">
+      <ResizePanal
+        showLeftPanel={true}
+        leftSide={<Explorer />}
+        rightSide={<Coding />}
+      />
     </main>
   );
 };
