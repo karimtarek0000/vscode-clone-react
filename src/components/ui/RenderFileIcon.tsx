@@ -1,4 +1,4 @@
-import { extFiles, extFolders } from "../../constans";
+import { extFiles, extFolders } from "../../data";
 import { IRenderFileIcon } from "../../interfaces";
 import RenderSVG from "./RenderSVG";
 

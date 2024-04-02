@@ -3,7 +3,7 @@ import { selectFileTree } from "./app/slices/fileTree";
 import RecursiveFile from "./components/RecursiveFile";
 import FileSyntaxHighlighter from "./components/ui/FileSyntaxHighlighter";
 import OpenedFilesBar from "./components/ui/OpenedFilesBar";
-import { files } from "./constans";
+import { files } from "./data";
 
 const App = () => {
   const { clickedFile } = useSelector(selectFileTree);

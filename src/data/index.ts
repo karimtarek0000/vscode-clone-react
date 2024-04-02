@@ -1,4 +1,5 @@
 import { v4 as uuid } from "uuid";
+import { components, data, nodeModules, root } from "../constens";
 import { IFile } from "../interfaces";
 
 export const files: IFile[] = [
@@ -14,27 +15,9 @@ export const files: IFile[] = [
         children: [
           {
             id: uuid(),
-            fileName: "react.tsx",
-            isFolder: false,
-            fileContent: "",
-          },
-          {
-            id: uuid(),
-            fileName: "new.tsx",
-            isFolder: false,
-            fileContent: "",
-          },
-          {
-            id: uuid(),
             fileName: "app.js",
             isFolder: false,
-            fileContent: "",
-          },
-          {
-            id: uuid(),
-            fileName: "style.scss",
-            isFolder: false,
-            fileContent: "",
+            fileContent: nodeModules.appjs,
           },
         ],
       },
@@ -52,19 +35,7 @@ export const files: IFile[] = [
                 id: uuid(),
                 fileName: "Navbar.tsx",
                 isFolder: false,
-                fileContent: "",
-              },
-              {
-                id: uuid(),
-                fileName: "Modal.tsx",
-                isFolder: false,
-                fileContent: "",
-              },
-              {
-                id: uuid(),
-                fileName: "ProductDetails.jsx",
-                isFolder: false,
-                fileContent: "",
+                fileContent: components.navbar,
               },
             ],
           },
@@ -79,7 +50,7 @@ export const files: IFile[] = [
             id: uuid(),
             fileName: "main.css",
             isFolder: false,
-            fileContent: "",
+            fileContent: data.maincss,
           },
         ],
       },
@@ -87,37 +58,19 @@ export const files: IFile[] = [
         id: uuid(),
         fileName: "index.html",
         isFolder: false,
-        fileContent: "",
+        fileContent: root.indexhtml,
       },
       {
         id: uuid(),
         fileName: "main.ts",
         isFolder: false,
-        fileContent: `export interface IFile {
-    id: string | null;
-    fileName: string;
-    isFolder: boolean;
-    children?: IFile[];
-    fileContent?: string;
-}`,
+        fileContent: root.maints,
       },
       {
         id: uuid(),
         fileName: "index.css",
         isFolder: false,
-        fileContent: "",
-      },
-      {
-        id: uuid(),
-        fileName: "App.tsx",
-        isFolder: false,
-        fileContent: "",
-      },
-      {
-        id: uuid(),
-        fileName: "test.tsxs",
-        isFolder: false,
-        fileContent: "",
+        fileContent: root.indexcss,
       },
     ],
   },
