@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { useSelector } from "react-redux";
 import {
   removeTabActive,
@@ -5,6 +6,7 @@ import {
   setClickedFile,
 } from "../../../app/slices/fileTree";
 import { useAppDispatch } from "../../../app/store";
+import { ContextDropMenu } from "../../../context/ContextDropMenu";
 import { IOpenedFileTab } from "../../../interfaces";
 import RenderFileIcon from "../RenderFileIcon";
 import RenderSVG from "../RenderSVG";
@@ -19,8 +21,13 @@ const OpenedFileTab = ({ file, idx }: IOpenedFileTab) => {
   const { clickedFile } = useSelector(selectFileTree);
   const dispatch = useAppDispatch();
 
+  // ----------------- CONTEXT -----------------
+  const { setPosition, setShow } = useContext(ContextDropMenu);
+
   // ----------------- HANDLER -----------------
-  const closeTabHandler = (e: MouseEvent<HTMLButtonElement, any>) => {
+  const closeTabHandler = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.stopPropagation();
     dispatch(removeTabActive(idx));
   };
@@ -33,6 +40,13 @@ const OpenedFileTab = ({ file, idx }: IOpenedFileTab) => {
       })
     );
   };
+  const contextMenuHandler = (
+    e: React.MouseEvent<HTMLLIElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    setShow(true);
+    setPosition({ x: e.clientX, y: e.clientY });
+  };
   const classActiveTab = () => {
     return clickedFile.id === id ? "border-white/40" : "border-transparent";
   };
@@ -41,6 +55,7 @@ const OpenedFileTab = ({ file, idx }: IOpenedFileTab) => {
     <li
       className={`${tab} border-t ${classActiveTab()}`}
       onClick={setClickedTabHandler}
+      onContextMenu={contextMenuHandler}
     >
       <RenderFileIcon fileName={file.fileName} />
       <span>{file.fileName}</span>
