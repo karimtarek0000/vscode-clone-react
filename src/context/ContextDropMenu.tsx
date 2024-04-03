@@ -47,15 +47,19 @@ const DropMenu = ({ children }: IDropMenu) => {
   return (
     <ContextDropMenu.Provider value={{ setPosition, setShow, setIdxActiveTab }}>
       <ul
-        className="absolute z-30 *:block p-3 space-y-1 text-black bg-white rounded-md w-36 h-fit"
+        className="absolute flex justify-start *:py-1 text-black bg-white rounded-md z-30space-y-1 w-36 h-fit"
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,
           display: show ? "block" : "none",
         }}
       >
-        <button onClick={closeOneTab}>Close</button>
-        <button onClick={closeAllTabs}>Close All</button>
+        <button className="w-full px-3 text-start" onClick={closeOneTab}>
+          Close
+        </button>
+        <button className="w-full px-3 text-start" onClick={closeAllTabs}>
+          Close All
+        </button>
       </ul>
 
       {children}

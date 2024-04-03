@@ -39,13 +39,13 @@ const OpenedFileTab = ({ file, idx }: IOpenedFileTab) => {
         fileContent,
       })
     );
-    setIdxActiveTab(idx);
   };
   const contextMenuHandler = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>
   ) => {
     e.preventDefault();
     setShow(true);
+    setIdxActiveTab(idx);
     setPosition({ x: e.clientX, y: e.clientY });
   };
   const classActiveTab = () => {
