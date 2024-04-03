@@ -22,7 +22,7 @@ const OpenedFileTab = ({ file, idx }: IOpenedFileTab) => {
   const dispatch = useAppDispatch();
 
   // ----------------- CONTEXT -----------------
-  const { setPosition, setShow } = useContext(ContextDropMenu);
+  const { setPosition, setShow, setIdxActiveTab } = useContext(ContextDropMenu);
 
   // ----------------- HANDLER -----------------
   const closeTabHandler = (
@@ -39,6 +39,7 @@ const OpenedFileTab = ({ file, idx }: IOpenedFileTab) => {
         fileContent,
       })
     );
+    setIdxActiveTab(idx);
   };
   const contextMenuHandler = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>
