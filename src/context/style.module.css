@@ -1,0 +1,6 @@
+.contextMenuWrapper {
+  @apply absolute flex justify-start overflow-hidden *:px-3 text-black bg-white rounded-md z-30 space-y-1 w-36 h-fit;
+}
+.btn {
+  @apply w-full py-2 text-gray-700 transition-colors duration-200 text-start hover:bg-gray-200;
+}

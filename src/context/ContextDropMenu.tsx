@@ -4,10 +4,13 @@ import {
   ReactNode,
   SetStateAction,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import { removeAllTabs, removeTabActive } from "../app/slices/fileTree";
 import { useAppDispatch } from "../app/store";
+import Style from "./style.module.css";
+import { Provider } from "react-redux";
 
 interface IContextDropMenu {
   setShow: Dispatch<SetStateAction<boolean>>;
@@ -23,10 +26,13 @@ interface IDropMenu {
   children: ReactNode;
 }
 
+const { contextMenuWrapper, btn } = Style;
+
 const DropMenu = ({ children }: IDropMenu) => {
   const dispatch = useAppDispatch();
   const [position, setPosition] = useState({ x: 10, y: 10 });
   const [show, setShow] = useState<boolean>(false);
+  const menuRef = useRef<HTMLUListElement>(null);
   const [idxActiveTab, setIdxActiveTab] = useState<number>(0);
 
   // ----------------- HANDLER -----------------
@@ -35,10 +41,13 @@ const DropMenu = ({ children }: IDropMenu) => {
 
   // ----------------- LIFECYCLE HOOKS -----------------
   useEffect(() => {
-    const clickedOutsideHandler = () => {
-      setShow(false);
-    };
-    window.addEventListener("click", clickedOutsideHandler);
+    const clickedOutsideHandler = () => setShow(false);
+
+    window.addEventListener("click", () => {
+      if (menuRef.current?.style.display === "block") {
+        clickedOutsideHandler();
+      }
+    });
 
     return () =>
       window.removeEventListener("click", () => clickedOutsideHandler);
@@ -47,17 +56,18 @@ const DropMenu = ({ children }: IDropMenu) => {
   return (
     <ContextDropMenu.Provider value={{ setPosition, setShow, setIdxActiveTab }}>
       <ul
-        className="absolute flex justify-start *:py-1 text-black bg-white rounded-md z-30space-y-1 w-36 h-fit"
+        ref={menuRef}
+        className={contextMenuWrapper}
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,
           display: show ? "block" : "none",
         }}
       >
-        <button className="w-full px-3 text-start" onClick={closeOneTab}>
+        <button className={btn} onClick={closeOneTab}>
           Close
         </button>
-        <button className="w-full px-3 text-start" onClick={closeAllTabs}>
+        <button className={btn} onClick={closeAllTabs}>
           Close All
         </button>
       </ul>
