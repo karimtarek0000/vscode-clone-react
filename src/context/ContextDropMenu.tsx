@@ -10,7 +10,6 @@ import {
 import { removeAllTabs, removeTabActive } from "../app/slices/fileTree";
 import { useAppDispatch } from "../app/store";
 import Style from "./style.module.css";
-import { Provider } from "react-redux";
 
 interface IContextDropMenu {
   setShow: Dispatch<SetStateAction<boolean>>;
