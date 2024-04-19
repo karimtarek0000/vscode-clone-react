@@ -5,11 +5,9 @@ interface IFileSyntaxHighlighter {
   content: string;
 }
 
-const FileSyntaxHighlighter = ({
-  content,
-}: {
-  content: IFileSyntaxHighlighter;
-}) => {
+const FileSyntaxHighlighter = (props: IFileSyntaxHighlighter) => {
+  const { content } = props;
+
   return (
     <SyntaxHighlighter
       language="javascript"

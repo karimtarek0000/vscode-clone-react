@@ -13,7 +13,7 @@ const Preview = () => {
   return (
     <section>
       <OpenedFilesBar />
-      <FileSyntaxHighlighter content={clickedFile.fileContent} />
+      <FileSyntaxHighlighter content={clickedFile?.fileContent ?? ""} />
     </section>
   );
 };
